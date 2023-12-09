@@ -1,0 +1,35 @@
+env: bess
+
+env_args:
+  "map_name": "bess_d"
+  "n_agents": 3 # bess number
+  "P_R": 5 # rated power of one EC
+  "bat_type": "LFP" # "LFP" or "LA"
+  "bat_capacity": 2.5 # kWh
+  "min_soc": 0.05
+  "max_soc": 1.0
+  "init_soc": 0.5
+  "init_soh": 1.0
+  "init_dod": 0.0
+  "soh_dead": 0.05
+  "delta_t": 0.25 # the length of a time slot, in unit of hour
+  "episode_days": 7 # 7days
+  "energy_charge_price": 2.021 # A$/kWh
+  "demand_charge_price": 26.8697 # A$/kW/day
+  "state_space": [ "peak", "power", "soc", "soh", "dod" ]
+  "reward_type": 0 # 0 stands for minus bill cost; 1 stands for [to be extended]
+  "powers_data": "0-3" # power data setting
+  "n_actions": 120
+  "socs_of_one_action": 1
+  "index_to_action": 20
+
+LA:
+  "discharge_efficiency": 0.75
+  "charge_efficiency": 0.997
+  "bat_price": 381 # 260*1.4667, 1.4667 is the exchange rate
+
+LFP:
+  "discharge_efficiency": 0.85
+  "charge_efficiency": 0.999
+  "bat_price": 397 # 260*1.4667
+
