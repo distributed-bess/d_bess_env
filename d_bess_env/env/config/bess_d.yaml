@@ -31,5 +31,5 @@ LA:
 LFP:
   "discharge_efficiency": 0.85
   "charge_efficiency": 0.999
-  "bat_price": 397 # 260*1.4667
+  "bat_price": 397 # 270*1.4667
 
