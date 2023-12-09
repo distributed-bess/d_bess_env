@@ -25,13 +25,11 @@ def read_dod(bat_type, wb):
         number_of_cycles.append(y)
     min_dod_level = dod_level[0]
     max_number_of_cycles = number_of_cycles[0]
-    # 使用cubic来拟合dod函数
     func = interpolate.interp1d(dod_level, number_of_cycles, kind='cubic')
     return min_dod_level, max_number_of_cycles, func
 
 
 def dod(bat_type):
-    # 在初始化bess时只读取文件一次
     dod_files = {"LA": os.path.join(os.path.dirname(__file__), "data/dod_data/LA_dod.xlsx"),
                  "LFP": os.path.join(os.path.dirname(__file__), "data/dod_data/LFP_dod.xlsx")}
     wb = xlrd.open_workbook(filename=dod_files[bat_type])
