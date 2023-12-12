@@ -1,5 +1,5 @@
 # d_bess_env
-The distributed ECs (BESSs) environment
+The distributed ECs (BESSs) environment and instructions:
 * The power data of the ECs has been deleted as it is considered proprietary information. To test the environment, you can utilize the public dataset of servers. The power data files are named as EC-0.txt, EC-1.txt, etc. in folder `data\power_data`, with a length of 672 indicating a one-week timeframe.
 * The data for the dod function is contained within the folder `data\dod_data`, which includes both LA and LFP batteries. Moreover, you must install `xlrd 1.2.0` to read these files.
 * The functionalities of single BESS are implemented in [onebess.py](d_bess_env/env/onebess.py).
