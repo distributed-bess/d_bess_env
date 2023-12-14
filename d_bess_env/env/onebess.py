@@ -23,8 +23,14 @@ def read_dod(bat_type, wb):
         x, y = read_excel(x, wb)
         dod_level.append(x)
         number_of_cycles.append(y)
-    min_dod_level = dod_level[0]
-    max_number_of_cycles = number_of_cycles[0]
+    min_dod_level = min(dod_level)
+    max_number_of_cycles = max(number_of_cycles)
+    for i in range(1, 5):
+        min_dod_level /= 2
+        max_number_of_cycles *= 2
+        dod_level.append(min_dod_level)
+        number_of_cycles.append(max_number_of_cycles)
+
     func = interpolate.interp1d(dod_level, number_of_cycles, kind='cubic')
     return min_dod_level, max_number_of_cycles, func
 
@@ -36,12 +42,8 @@ def dod(bat_type):
 
     def dod_func(dod_level):
         min_dod_level, max_number_of_cycles, func = read_dod(bat_type, wb)
-        if dod_level < min_dod_level / 2:
-            return max_number_of_cycles * 4
-        elif dod_level < min_dod_level:
-            return max_number_of_cycles * 2
-        elif dod_level > 100:
-            dod_level = 100
+        if dod_level < min_dod_level:
+            return max_number_of_cycles
         return func(dod_level)
 
     return dod_func
@@ -102,7 +104,7 @@ class OneBESS:
         self.SoC = getattr(self.args, "init_soc")
         self.DoD = getattr(self.args, "init_dod")
 
-    def do_action(self, action, time_slot):
+    def do_action(self, action):
         delta_SoC = action
         delta_SoH = 0
         if not float_equal(action, 0):
