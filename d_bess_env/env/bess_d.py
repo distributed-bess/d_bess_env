@@ -82,7 +82,7 @@ class BESS_d():
             action = actions[i]
             ec_delta_power = action * self.bess_list[i].E_c * self.bess_list[i].SoH * self.get_efficiency(i,
                                                                                                           action) / self.delta_t
-            delta_SoH = self.bess_list[i].do_action(action, self.time)
+            delta_SoH = self.bess_list[i].do_action(action)
             delta_SoHs.append(delta_SoH)
             ec_power_after = round(self.powers_t[i] - ec_delta_power, 3)
             if ec_power_after < 0:
